@@ -396,6 +396,10 @@ exports.getUserWithOrder = async function() {
     
   } else {
     console.log("=============== NULL ============");
+    let mailData = {
+      subject: `User Migration Complete`,
+      message: `<p>DONE Turn Off!</p>`
+    }
   }
 
   return userMyQ;
