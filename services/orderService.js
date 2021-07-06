@@ -7,6 +7,7 @@ var rpoUserMongo = require('../repositories/usersMongo');
 
 var mailService = require('../services/mailerService');
 
+var helpers = require('../helpers');
 
 exports.createOrderCode = async function() {
 
@@ -366,7 +367,7 @@ exports.getUserWithOrder = async function() {
     
   }
 
-  if (userMyQ) {
+  if (userMyQ && !userMyQ.email.includes("temporary") ) {
     console.log("=============== FOUND USER "+userMyQ.email+" ============");
     let flag = true
 
