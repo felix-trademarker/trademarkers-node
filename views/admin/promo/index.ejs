@@ -15,7 +15,7 @@
 </div>
                     
 <div clss="col-md-12">
-    <table id="myListDataTable" class="display" style="width:100%">
+    <table id="dataTableTrademarks" class="display" style="width:100%">
         <thead>
             <tr>
                 <th>Name</th>
@@ -32,7 +32,14 @@
         <% users.forEach(function(code,key) {  %>
    
             <tr>
-                <td><%= code.name %></td>
+                <%
+                let createdAtDate;
+
+                if (code.created_at_formatted) {
+                    createdAtDate = code.created_at_formatted
+                }
+                %>
+                <td data-sort="<%= moment(createdAtDate).unix() %>" ><%= code.name %></td>
                 <td><%= code.code %></td>
                 <td><%= code.discountType == "Percentage" ? code.discountAmount+'%': '$'+code.discountAmount %></td>
                 <td><%= code.notes %></td>

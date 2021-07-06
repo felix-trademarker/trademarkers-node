@@ -116,7 +116,7 @@ exports.generateInvoice = async function(orderNumber) {
 
             let path = './public/pdf/'+orders[0].orderNumber.toLowerCase()+'.pdf'
 
-            if (!fs.existsSync(path) || true ) {
+            if ( !fs.existsSync(path) ) {
 
                 console.log('exec');
 

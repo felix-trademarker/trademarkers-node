@@ -1490,7 +1490,7 @@ exports.checkout = async function(req, res, next) {
   // compute price
   let price = 0;
   let description = "Trademarkers LLC Service";
-  let name = "", payment = "";
+  let name = "", payment = "Trademarkers LLC Service";
   let customer = req.body.email ? req.body.email : "";
 // console.log('action', action);
   if ( action[0] && action[0].number) {
@@ -1513,7 +1513,7 @@ exports.checkout = async function(req, res, next) {
     price = req.body.price ? (req.body.price * 1) : 0;
     description = req.body.description ? req.body.description : "";
     name = req.body.name ? req.body.name : "";
-    payment = req.body.payment ? req.body.payment : "";
+    payment = req.body.payment ? req.body.payment : "Trademarkers LLC Service";
   }
 // console.log('price', price);
 
@@ -1543,8 +1543,10 @@ exports.checkout = async function(req, res, next) {
       charge: charge,
       custom: false,
       paid: true,
+      paymentMethod: 'Stripe',
       action: action[0],
       userId: action[0] ? action[0].userId : '',
+      user: action[0] ? action[0].user : null,
       created_at: toInteger(moment().format('YYMMDD')),
       created_at_formatted: moment().format()
     }
@@ -1919,8 +1921,8 @@ exports.serviceOrderSubmit = async function(req, res, next) {
 
   // compute price
   let price = serviceCode[0].amount;
-  let description = serviceCode[0].name;
-  let name = "", payment = serviceCode[0].description;
+  let description = serviceCode[0].description;
+  let name = "", payment = serviceCode[0].name;
   let customer = req.body.email ? req.body.email : "";
 
 
@@ -1952,11 +1954,16 @@ exports.serviceOrderSubmit = async function(req, res, next) {
       charge: charge,
       custom: true,
       paid: true,
+      paymentMethod: 'Stripe',
       action: req.body.code,
       userId: '',
+      user: null,
+      paymentFor: payment,
+      paymentDescription: description,
       created_at: toInteger(moment().format('YYMMDD')),
       created_at_formatted: moment().format()
     }
+
 
     console.log('put', order);
 

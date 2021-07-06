@@ -435,8 +435,9 @@
                           <% } %>
   
                           <% if(!order.custom && order.action) { %>
-                            <p>Serial Number: <%= order.action.serialNumber %></p>
-                            <p>Mark: <%= order.action.trademark.name %></p>
+                            <br>Serial Number: <%= order.action.serialNumber %>
+                            <br>Mark: <%= order.action.trademark.name %>
+                            <br>Action Code: <%= order.action.number %>
                           <% } %>
 
                           

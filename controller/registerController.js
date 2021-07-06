@@ -24,6 +24,7 @@ var mailService = require('../services/mailerService');
 var orderService = require('../services/orderService');
 var activityService = require('../services/activityLogService');
 var cartService = require('../services/cartService');
+var pdfService = require('../services/pdfService');
 
 const { toInteger, unset } = require('lodash');
 let moment = require('moment');
@@ -954,10 +955,12 @@ exports.placeOrder = async function(req, res, next) {
     
 
     mailService.sendOrderNotification(order);
-    rpoOrder.put(order);
-    rpoInvoice.put(invoice);
-    res.flash('success', 'Payment Successful!');
+    await rpoOrder.put(order);
+    await rpoInvoice.put(invoice);
+    // res.flash('success', 'Placed Order Successful!');
     // rpoCharge.put(charge);
+
+    await pdfService.generateInvoice(order.orderNumber);
 
     activityService.logger(req.ip, req.originalUrl, "Invoice checkout " + orderCode, req);
 

@@ -376,7 +376,7 @@ exports.sendOrderNotification = async function(order) {
   // CUSTOMER NOTIFICATION
   ejs.renderFile(__dirname+"/../email-templates/orderCustomerNotification.ejs", { order: order }, async function (err, data) {
     if (err) {
-        console.log(err);
+        console.log('this error',err);
     } else {
       
       let to = order.user ? order.user.email : order.custEmail;
@@ -394,8 +394,23 @@ exports.sendOrderNotification = async function(order) {
         // to: "felix@bigfoot.com",
         // bcc: ["carissa@trademarkers.com", "felix@bigfoot.com"],
         subject: "TradeMarkers LLC " + order.orderNumber, 
-        html: data
+        html: data,
+        // attachments: [
+        //   {
+        //       filename: order.invoiceCode+'.pdf',
+        //       path: process.env.APP_URL +"/pdf/"+order.orderNumber.toLowerCase()+".pdf"
+        //   }
+        // ]
       };
+
+      if (order.paymentMethod && order.paymentMethod == "Invoice") {
+        mainOptions.attachments = [
+          {
+            filename: order.invoiceCode+'.pdf',
+            path: process.env.APP_URL +"/pdf/"+order.orderNumber.toLowerCase()+".pdf"
+          }
+        ]
+      }
 
       transporter.sendMail(mainOptions);
 
@@ -405,6 +420,7 @@ exports.sendOrderNotification = async function(order) {
 
   // ORDER DETAILS CONFIRMATION NOTIFICATION
   if ( order.cartItems ) {
+    let count = 1;
     order.cartItems.forEach(item => {
       if ( item.serviceType == "registration" || item.serviceType == "study" ) {
         
@@ -415,6 +431,7 @@ exports.sendOrderNotification = async function(order) {
           } else {
             
             let to = order.user ? order.user.email : order.custEmail;
+            // let to = "felix@bigfoot.com";
       
             if (order.user && order.user.secondaryEmail) {
               to = order.user.secondaryEmail;
@@ -429,8 +446,21 @@ exports.sendOrderNotification = async function(order) {
               subject: `Update on Your ${item.country.abbr} Trademark Application: (${item.word_mark}) – (${order.orderNumber}) - Order Confirmation`, 
               html: data
             };
+
+            let delay = 60000 * count;
+            count++;
+
+            setTimeout(function(){
+              transporter.sendMail(mainOptions, (error, info) => {
+                if (error) 
+                  console.log('Mail failed!! :(')
+                else
+                  console.log('Mail sent to ' + mainOptions.to)
+              }),
+              delay
+            })
       
-            transporter.sendMail(mainOptions);
+            
       
           }
           

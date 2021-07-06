@@ -914,7 +914,7 @@
 							Make sure to visit your account to keep your contact information up-to-date.
 							<% if (!order.paid) { %>
 							<br>
-							To download a copy of your invoice, please visit your account.
+							To download a copy of your <a href="<%= process.env.APP_URL %>/pdf/<%= order.orderNumber.toLowerCase() %>.pdf">invoice</a>, please visit your account.
 							<% } %>
                         </td>
                     </tr>
