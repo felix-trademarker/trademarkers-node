@@ -338,6 +338,8 @@ exports.syncOrders = async function() {
 
 exports.getUserWithOrder = async function() {
 
+  console.log("===============called migration============");
+
   let usersMySql = await rpoUserMysql.getUsers()
   let migrated = true;
   let userMyQ = null;
@@ -364,6 +366,7 @@ exports.getUserWithOrder = async function() {
   }
 
   if (userMyQ) {
+    console.log("=============== FOUND USER "+userMyQ.email+" ============");
     let flag = true
 
     for ( ; flag; ) {
@@ -388,7 +391,7 @@ exports.getUserWithOrder = async function() {
                 <p>Mongo ID: ${userMyQ._id}</p>`
     }
     mailService.notifyWebMaster(mailData);
-
+    
   }
 
   return userMyQ;
