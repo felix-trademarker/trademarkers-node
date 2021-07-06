@@ -347,13 +347,14 @@ exports.getUserWithOrder = async function() {
   for (let i = 0, track = true; track; i++) {
 
     if (usersMySql.length > i) {
-
+      console.log("=============== Checking in Mongo "+usersMySql[i].email+" ============");
       // check if user in mongo
       let user = await rpoUserMongo.getById(usersMySql[i].id)
 
       if (!user) {
         // nothing found 
         // exe migrate
+        console.log("=============== Not in Mongo "+usersMySql[i].email+" ============");
         userMyQ = usersMySql[i]
         track = false
       }
