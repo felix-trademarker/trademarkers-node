@@ -350,8 +350,8 @@ exports.getUserWithOrder = async function() {
       console.log("=============== Checking in Mongo "+usersMySql[i].email+" ============");
       // check if user in mongo
       let user = await rpoUserMongo.getById(usersMySql[i].id)
-      console.log("user >> ", user[0].email);
-      if (!user) {
+      // console.log("user >> ", user[0].email);
+      if (!user ) {
         // nothing found 
         // exe migrate
         console.log("=============== Not in Mongo "+usersMySql[i].email+" ============");
