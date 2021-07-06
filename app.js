@@ -201,8 +201,18 @@ conn.connectToServer( function( err, client ) {
 
   }
   
+  if ( process.env.ENVIRONMENT == "dev" ) {
 
-  // orderService.fixOrderRecords()
+    cron.schedule('0 */5 * * * *', async () => { 
+      
+      let user = await orderService.getUserWithOrder()
+      if (user) {
+        await orderService.getOldOrders(user);
+      }
+    });
+
+  }
+  
 
   // FOR TEST
   // cron.schedule('*/5 6-10 */16 * * mon-fri', () => {

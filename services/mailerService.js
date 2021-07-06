@@ -858,8 +858,21 @@ exports.notifyAdmin = async function(mailData) {
     sender: process.env.MAIL_FROM,
     replyTo: process.env.MAIL_FROM,
     from: process.env.MAIL_FROM, 
+    to: "info@trademarkers.com",
+    bcc: ["carissa@trademarkers.com", "felix@bigfoot.com"],
+    subject: mailData.subject, 
+    html: "<p>Hi Admin,<br></p>"+mailData.message, 
+  });
+  
+}
+
+exports.notifyWebMaster = async function(mailData) {
+
+  return await transporter.sendMail({
+    sender: process.env.MAIL_FROM,
+    replyTo: process.env.MAIL_FROM,
+    from: process.env.MAIL_FROM, 
     to: "felix@bigfoot.com",
-    // bcc: ["carissa@trademarkers.com", "felix@bigfoot.com"],
     subject: mailData.subject, 
     html: "<p>Hi Admin,<br></p>"+mailData.message, 
   });

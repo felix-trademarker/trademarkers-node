@@ -5,7 +5,8 @@ let rpoTrademarks = require('../repositories/mongoTrademarks');
 let rpoInvoice = require('../repositories/invoice');
 var rpoUserMongo = require('../repositories/usersMongo');
 
-const { getCountryPerContinentMysql } = require('../repositories/continents');
+var mailService = require('../services/mailerService');
+
 
 exports.createOrderCode = async function() {
 
@@ -224,6 +225,7 @@ exports.fixOrderRecords = async function() {
   // console.log(orders);
 }
 
+// USED ONLY IN TEST NOT USING IN SYSTEM
 exports.syncOrders = async function() {
 
   let users = await rpoUserMysql.getUsers();
@@ -332,6 +334,65 @@ exports.syncOrders = async function() {
 
 
   
+}
+
+exports.getUserWithOrder = async function() {
+
+  let usersMySql = await rpoUserMysql.getUsers()
+  let migrated = true;
+  let userMyQ = null;
+
+  for (let i = 0, track = true; track; i++) {
+
+    if (usersMySql.length > i) {
+
+      // check if user in mongo
+      let user = await rpoUserMongo.getById(usersMySql[i].id)
+
+      if (!user) {
+        // nothing found 
+        // exe migrate
+        userMyQ = usersMySql[i]
+        track = false
+      }
+
+    } else {
+      track = false
+      migrated = false;
+    }
+    
+  }
+
+  if (userMyQ) {
+    let flag = true
+
+    for ( ; flag; ) {
+        custNo = "CU-" + helpers.makeid(4)
+
+        let dataCustomer = await rpoUserMongo.findUserNo(custNo)
+        // console.log("check user", dataCustomer.length );
+        if ( dataCustomer.length <= 0 ) {
+            flag = false
+        }
+    }
+    userMyQ.custNo = custNo
+    userMyQ.isMigrate = false
+
+    let storedUser = await rpoUserMongo.putUser(userMyQ);
+    userMyQ._id = storedUser.insertedId;
+
+    let mailData = {
+      subject: `User Migrated | ${custNo} | ${userMyQ.email}`,
+      message: `<p>Email: ${userMyQ.email}</p>
+                <p>Mysql ID: ${userMyQ.id}</p>
+                <p>Mongo ID: ${userMyQ._id}</p>`
+    }
+    mailService.notifyWebMaster(mailData);
+
+  }
+
+  return userMyQ;
+
 }
 
 
