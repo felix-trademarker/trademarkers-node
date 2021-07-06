@@ -392,6 +392,8 @@ exports.getUserWithOrder = async function() {
     }
     mailService.notifyWebMaster(mailData);
     
+  } else {
+    console.log("=============== NULL ============");
   }
 
   return userMyQ;
