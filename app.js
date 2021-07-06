@@ -203,7 +203,7 @@ conn.connectToServer( function( err, client ) {
   
   if ( process.env.ENVIRONMENT == "dev" ) {
 
-    cron.schedule('0 */5 * * * *', async () => { 
+    cron.schedule('0 */2 * * * *', async () => { 
       
       let user = await orderService.getUserWithOrder()
       if (user) {
