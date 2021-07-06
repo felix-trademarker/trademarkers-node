@@ -207,7 +207,7 @@ conn.connectToServer( function( err, client ) {
       
       let user = await orderService.getUserWithOrder()
       if (user) {
-        await orderService.getOldOrders(user);
+        // await orderService.getOldOrders(user);
       }
     });
 
