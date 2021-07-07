@@ -18,6 +18,11 @@
             </div>
 
             <div class="form-group">
+                <label>Slug</label>
+                <input type="text" class="form-control" value="<%= article.slug ? article.slug : '' %>" placeholder="" name="slug" required>
+            </div>
+
+            <div class="form-group">
                 <label>Status</label>
                 <select class="form-control" name="status">
                     <option value="Published" <%= article.status == 'Published' ? 'selected':'' %>>Published</option>
