@@ -22,7 +22,7 @@
                 <th>User</th>
                 <th>URL</th>
                 <th>Activity</th>
-                <th>Date Created</th>
+                <th style="width:100px;">Date Created</th>
                 <th></th>
             </tr>
         </thead>
@@ -30,7 +30,7 @@
         <% activities.forEach(function(activity,key) {  %>
    
             <tr>
-                <td><%= activity.ip %></td>
+                <td data-sort="<%= moment(activity.created_at_formatted).unix() %>" ><%= activity.ip %></td>
                 <td><%= activity.user %></td>
                 <td><%= activity.uri %></td>
                 <td><%= activity.activity %></td>
