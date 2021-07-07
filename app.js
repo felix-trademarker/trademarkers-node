@@ -204,14 +204,14 @@ conn.connectToServer( function( err, client ) {
   if ( process.env.ENVIRONMENT == "dev" ) {
 
     // orderService.addTrademarkOwnerInfo()
-    cron.schedule('0 */2 * * * *', async () => { 
+    // cron.schedule('0 */2 * * * *', async () => { 
       
-      let user = await orderService.getUserWithOrder()
-      if (user) {
-        await orderService.getOldOrders(user);
-      }
+    //   let user = await orderService.getUserWithOrder()
+    //   if (user) {
+    //     await orderService.getOldOrders(user);
+    //   }
 
-    });
+    // });
 
   }
   
