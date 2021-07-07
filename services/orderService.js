@@ -387,13 +387,13 @@ exports.getUserWithOrder = async function() {
     let storedUser = await rpoUserMongo.putUser(userMyQ);
     userMyQ._id = storedUser.insertedId;
 
-    let mailData = {
-      subject: `User Migrated | ${custNo} | ${userMyQ.email}`,
-      message: `<p>Email: ${userMyQ.email}</p>
-                <p>Mysql ID: ${userMyQ.id}</p>
-                <p>Mongo ID: ${userMyQ._id}</p>`
-    }
-    mailService.notifyWebMaster(mailData);
+    // let mailData = {
+    //   subject: `User Migrated | ${custNo} | ${userMyQ.email}`,
+    //   message: `<p>Email: ${userMyQ.email}</p>
+    //             <p>Mysql ID: ${userMyQ.id}</p>
+    //             <p>Mongo ID: ${userMyQ._id}</p>`
+    // }
+    // mailService.notifyWebMaster(mailData);
     
   } else {
     console.log("=============== NULL ============");
@@ -401,6 +401,7 @@ exports.getUserWithOrder = async function() {
       subject: `User Migration Complete`,
       message: `<p>DONE Turn Off!</p>`
     }
+    mailService.notifyWebMaster(mailData);
   }
 
   return userMyQ;
