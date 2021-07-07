@@ -176,7 +176,7 @@ module.exports = {
 					console.log('' + result + ' document(s) updated');
 					// res.send(result);
 					resolve(result)
-				}
+				} 
 			});
 
 		});
