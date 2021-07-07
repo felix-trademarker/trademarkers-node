@@ -407,6 +407,30 @@ exports.getUserWithOrder = async function() {
 
 }
 
+exports.addTrademarkOwnerInfo = async function() {
+
+  console.log("called");
+
+  let trademarks = await rpoTrademarks.fetchWithOutUser()
+
+  // console.log(trademarks);
+
+  for (let i=0; i < trademarks.length; i++) {
+
+    let user = await rpoUserMongo.getByIdM(trademarks[i].userId)
+    // console.log("user ID >> ", trademarks[i].userId);
+    // console.log("user >> ", user[0].email);
+    console.log("=============================");
+    if (user[0]) {
+      let trademarkData = {
+        user : user[0]
+      }
+      await rpoTrademarks.updateDetails(trademarks[i]._id, trademarkData)
+    }
+  }
+
+}
+
 
 
 

@@ -224,6 +224,24 @@ module.exports = {
 		});
 	},
 
+	fetchWithOutUser : async function() {
+		return new Promise(function(resolve, reject) {
+
+			let query = { userId: { $exists: true }, user: { $exists: false } };
+			
+			conn.getDb().collection(_table).find(query).toArray(function(err, result) {
+					
+				if (err) {
+					reject(err);
+				} else {
+					resolve(result);
+				}
+
+			});
+
+		});
+	},
+
 	
  
 	
