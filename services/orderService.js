@@ -105,6 +105,7 @@ exports.getOldOrders = async function(obj) {
 
         let trdData = {
           userId: obj._id,
+          user: obj,
           orderCode: orderData.orderNumber,
           userEmail: obj.email,
           serialNumber: trademarks[t].filing_number,
