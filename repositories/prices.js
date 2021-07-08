@@ -1,6 +1,7 @@
 let _table = process.env.TBLEXT + "prices";
 let conn = require('../config/DbConnect');
 
+let ObjectID = require('mongodb').ObjectID;
 // dirty connection MYSQL
 const mysql = require('mysql');
 const connection = mysql.createConnection({
@@ -98,5 +99,83 @@ module.exports = {
 
 		});
 	},
+
+	getById : async function(id) {
+		return new Promise(function(resolve, reject) {
+
+			
+			let query = { id: id };
+			
+			conn.getDb().collection(_table).find(query).toArray(function(err, result) {
+					
+				if (err) {
+					reject(err);
+				} else {
+					resolve(result);
+				}
+
+			});
+
+		});
+	},
+
+	getByIdM : async function(id) {
+		return new Promise(function(resolve, reject) {
+
+			let query = { _id: ObjectID(id) };
+			
+			conn.getDb().collection(_table).find(query).toArray(function(err, result) {
+					
+				if (err) {
+					reject(err);
+				} else {
+					resolve(result);
+				}
+
+			});
+
+		});
+	},
+
+	update: async function(id,data) {
+
+        let query = { _id: ObjectID(id) };
+
+		return new Promise(function(resolve, reject) { 
+
+			conn.getDb().collection(_table).updateOne(query,{$set: data }, function(err, result) {
+				if (err) {
+					console.log('Error updating user: ' + err);
+					// res.send({'error':'An error has occurred'});
+					reject(err)
+				} else {
+					console.log('' + result + ' document(s) updated');
+					// res.send(result);
+					resolve(result)
+				}
+			});
+
+		});
+
+	},
+	
+	remove: async function(id) {
+
+		return new Promise(function(resolve, reject) {
+
+			let query = { _id: ObjectID(id) };
+
+			conn.getDb().collection(_table).deleteOne(query, function(err, result) {
+				if (result) {
+					console.log('ok');
+					resolve(result)
+				} else {
+					console.log('err', err.message);
+					reject(err);
+				}
+			});
+		});
+
+    }
 
 };

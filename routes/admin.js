@@ -17,6 +17,7 @@ const adminVideos = require('../controller/adminVideosController')
 const adminActivities = require('../controller/adminActivitiesController')
 const adminCartItems = require('../controller/adminCartItemController')
 const adminAttorneys = require('../controller/adminAttorneysController')
+const adminPrices = require('../controller/adminPricesController')
 
 
 /* GET users listing. */
@@ -117,6 +118,13 @@ router.post('/manage/attorneys/edit/:id', verify, guardAdmin, adminAttorneys.edi
 router.get('/manage/attorneys/add', verify, guardAdmin, adminAttorneys.add);
 router.post('/manage/attorneys/add', verify, guardAdmin, adminAttorneys.addSubmit);
 router.get('/manage/attorneys/delete/:id', verify, guardAdmin, adminAttorneys.deleteRecord);
+
+router.get('/manage/prices', verify, guardAdmin, adminPrices.index);
+router.get('/manage/prices/edit/:id', verify, guardAdmin, adminPrices.edit);
+router.post('/manage/prices/edit/:id', verify, guardAdmin, adminPrices.editSubmit);
+router.get('/manage/prices/add', verify, guardAdmin, adminPrices.add);
+router.post('/manage/prices/add', verify, guardAdmin, adminPrices.addSubmit);
+router.get('/manage/prices/delete/:id', verify, guardAdmin, adminPrices.deleteRecord);
 
 
 

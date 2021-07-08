@@ -1,0 +1,55 @@
+<div class="col-md-12" style="margin-bottom:20px;">  
+    <h2>Prices List <a class="ml-3 btn btn-primary" href="/njs-admin/manage/prices/add"><i class="fa fa-plus" style="color:#fff"></i></a></h2>
+
+    <% if (flash.success) { %>
+    <div class="alert alert-success" role="alert">
+        <strong><%= flash.success %></strong>
+    </div>
+    <% } %>
+
+    <% if (flash.error) { %>
+    <div class="alert alert-danger" role="alert">
+        <strong><%= flash.error %></strong>
+    </div>
+    <% } %>
+</div>
+                    
+<div clss="col-md-12">
+    <table id="dataTableTrademarks" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>Service</th>
+                <th>Word Initial Cost</th>
+                <th>Word Additional Cost</th>
+                <th>Logo Initial Cost</th>
+                <th>Logo Additional Cost</th>
+                <th>Tax</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        <% lists.forEach(function(list,key) {  %>
+   
+            <tr>
+                <%
+                let country;
+                country = countries.find(x => x.id === list.country_id)
+                %>
+                <td data-sort="<%= moment(list.country_id).unix() %>"><%= country ? country.name : '' %></td>
+                <td><%= list.service_type %></td>
+                
+               
+                <td><%= list.initial_cost %></td>
+                <td><%= list.additional_cost %></td>
+                <td><%= list.logo_initial_cost %></td>
+                <td><%= list.logo_additional_cost %></td>
+                <td><%= list.tax %></td>
+
+                <td><a href="/njs-admin/manage/prices/edit/<%= list._id %>"><i class="fa fa-pen"></i></a>
+                <a href="/njs-admin/manage/prices/delete/<%= list._id %>"><i class="fa fa-trash"></i></a></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
