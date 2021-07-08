@@ -73,7 +73,7 @@ exports.addSubmit = async function(req, res, next) {
   attyData.create_at = toInteger(moment().format('YYMMDD'))
   attyData.created_at_formatted = moment().format()
 
-  await rpo.put(req.body);
+  await rpo.put(attyData);
   
   res.flash('success', 'Added successfully!');
 

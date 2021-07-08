@@ -1,11 +1,11 @@
 <div class="col-md-12" style="margin-bottom:20px;">    
-    <h2>Add Attorney
+    <h2>Add
     </h2>
 
 
 
 
-    <form class="row" action="/njs-admin/manage/attorneys/add" method="post" encType="multipart/form-data">
+    <form class="row" action="/njs-admin/manage/prices/add" method="post" encType="multipart/form-data">
 
     
 
@@ -13,80 +13,50 @@
             <hr>
 
             <div class="form-group">
-                <label>Representative ID</label>
-                <input type="text" class="form-control" value="" placeholder="" name="representativeId" required>
+                <label>Service</label>
+                <select class="form-control" name="service_type">
+                    <option value="Study">Study</option>
+                    <option value="Registration">Registration</option>
+                    <option value="Certificate">Certificate</option>
+                </select>
             </div>
 
             <div class="form-group">
-                <label>First Name</label>
-                
-                <input type="hidden" class="form-control" value="" placeholder="" name="name">
-                <input type="text" class="form-control" value="" placeholder="" name="fname" required>
+                <label>Word Initial Cost</label>
+                <input type="number" step="any" class="form-control" value="" name="initial_cost">
             </div>
 
             <div class="form-group">
-                <label>Last Name</label>
-                <input type="text" class="form-control" value="" placeholder="" name="lname" required>
+                <label>Word Additional Cost</label>
+                <input type="number" step="any" class="form-control" value="" name="additional_cost">
             </div>
 
             <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" class="form-control" value="" placeholder="" name="email" required>
+                <label>Logo Initial Cost</label>
+                <input type="number" step="any" class="form-control" value="" name="logo_initial_cost">
             </div>
 
             <div class="form-group">
-                <label>Contact Number</label>
-                <input type="text" class="form-control" value="" placeholder="" name="contact" required>
+                <label>Logo Additional Cost</label>
+                <input type="number" step="any" class="form-control" value="" name="logo_additional_cost">
             </div>
 
             <div class="form-group">
-                <label>Firm</label>
-                <input type="text" class="form-control" value="" placeholder="" name="firm" required>
-            </div>
-
-            <div class="form-group">
-                <label>Jurisdiction</label>
-                <input type="text" class="form-control" value="" placeholder="" name="jurisdiction" required>
-            </div>
-
-            <div class="form-group">
-                <label>Street</label>
-                <input type="text" class="form-control" value="" placeholder="" name="street" required>
-            </div>
-
-            <div class="form-group">
-                <label>City</label>
-                <input type="text" class="form-control" value="" placeholder="" name="city" required>
-            </div>
-
-            <div class="form-group">
-                <label>State</label>
-                <input type="text" class="form-control" value="" placeholder="" name="state" required>
-            </div>
-
-            <div class="form-group">
-                <label>Postal Code</label>
-                <input type="text" class="form-control" value="" placeholder="" name="postalCode" required>
+                <label>Tax</label>
+                <input type="number" step="any" class="form-control" value="" name="tax">
             </div>
 
             <div class="form-group">
                 <label>Country</label>
-                <select class="form-control" name="country">
+                <select class="form-control" name="country_id">
                     <option value="">-</option>
                     <% countries.forEach(function(country,key) {  %>
-                    <option value="<%= country.name %>"><%= country.name %></option>
+                    <option value="<%= country.id %>" ><%= country.name %></option>
                     <% }) %>
                 </select>
             </div>
+            
 
-
-            <div class="form-group">
-                <label>Status</label>
-                <select class="form-control" name="status" required>
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                </select>
-            </div>
 
 
 
@@ -96,7 +66,7 @@
 
         <div class="col-md-12">
             <p class="text-center">
-                <button type="submit" class="btn btn-primary btn-rounded-primary" style="padding-left:40px;padding-right:40px;">Create</button>
+                <button type="submit" class="btn btn-primary btn-rounded-primary" style="padding-left:40px;padding-right:40px;">Update</button>
             </p>
         </div>
 

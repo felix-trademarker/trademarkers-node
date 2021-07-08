@@ -55,18 +55,25 @@ exports.add = async function(req, res, next) {
 
 exports.addSubmit = async function(req, res, next) {
 
-  let attyData = req.body
+  let data = req.body
 
-  attyData.name = attyData.fname + " " + attyData.lname
+  
 
-  attyData.create_at = toInteger(moment().format('YYMMDD'))
-  attyData.created_at_formatted = moment().format()
+  data.country_id = data.country_id * 1.0
+  data.initial_cost = data.initial_cost * 1.0
+  data.additional_cost = data.additional_cost * 1.0
+  data.logo_initial_cost = data.logo_initial_cost * 1.0
+  data.logo_additional_cost = data.logo_additional_cost * 1.0
+  data.tax = data.tax * 1.0
 
-  await rpo.put(req.body);
+  data.create_at = toInteger(moment().format('YYMMDD'))
+  data.created_at_formatted = moment().format()
+
+  await rpo.put(data);
   
   res.flash('success', 'Added successfully!');
 
-  res.redirect('/njs-admin/manage/attorneys/');
+  res.redirect('/njs-admin/manage/prices/');
 
 }
 
@@ -92,9 +99,9 @@ exports.editSubmit = async function(req, res, next) {
   let updateData = req.body;
 
   updateData.country_id = updateData.country_id * 1.0
-  updateData.initial_cost = updateData.country_id * 1.0
-  updateData.additional_cost = updateData.country_id * 1.0
-  updateData.logo_initial_cost = updateData.country_id * 1.0
+  updateData.initial_cost = updateData.initial_cost * 1.0
+  updateData.additional_cost = updateData.additional_cost * 1.0
+  updateData.logo_initial_cost = updateData.logo_initial_cost * 1.0
   updateData.logo_additional_cost = updateData.logo_additional_cost * 1.0
   updateData.tax = updateData.tax * 1.0
 

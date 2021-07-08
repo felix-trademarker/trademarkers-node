@@ -25,7 +25,7 @@
                 <th>Logo Initial Cost</th>
                 <th>Logo Additional Cost</th>
                 <th>Tax</th>
-                <th></th>
+                <th width="100"></th>
             </tr>
         </thead>
         <tbody>
@@ -40,11 +40,11 @@
                 <td><%= list.service_type %></td>
                 
                
-                <td><%= list.initial_cost %></td>
-                <td><%= list.additional_cost %></td>
-                <td><%= list.logo_initial_cost %></td>
-                <td><%= list.logo_additional_cost %></td>
-                <td><%= list.tax %></td>
+                <td><%= helpers.getPriceFormatted(list.initial_cost) %></td>
+                <td><%= helpers.getPriceFormatted(list.additional_cost) %></td>
+                <td><%= helpers.getPriceFormatted(list.logo_initial_cost) %></td>
+                <td><%= helpers.getPriceFormatted(list.logo_additional_cost) %></td>
+                <td><%= helpers.getPriceFormatted(list.tax) %></td>
 
                 <td><a href="/njs-admin/manage/prices/edit/<%= list._id %>"><i class="fa fa-pen"></i></a>
                 <a href="/njs-admin/manage/prices/delete/<%= list._id %>"><i class="fa fa-trash"></i></a></td>
