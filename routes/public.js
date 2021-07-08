@@ -29,15 +29,15 @@ var router = express.Router();
 
 // DECLARE ROUTES WITH ASSIGNED CONTROLLERS
 router.get('/video/:ytId', publicController.ytVideo);
-router.get('/about', cache(60 * 60), publicController.about);
-router.get('/terms', cache(60 * 60), publicController.terms);
-router.get('/privacy', cache(60 * 60), publicController.privacy);
+router.get('/about', cache(15), publicController.about);
+router.get('/terms', cache(15), publicController.terms);
+router.get('/privacy', cache(15), publicController.privacy);
 
-router.get('/cookies', cache(60 * 60), publicController.cookies);
-router.get('/service_contract', cache(60 * 60), publicController.service_contract);
-router.get('/resources', cache(60 * 60), publicController.resources);
+router.get('/cookies', cache(15), publicController.cookies);
+router.get('/service_contract', cache(15), publicController.service_contract);
+router.get('/resources', cache(15), publicController.resources);
 
-router.get('/oppositions-and-proof-of-use', cache(60 * 60), publicController.oppositionProof);
+router.get('/oppositions-and-proof-of-use', cache(15), publicController.oppositionProof);
 
 router.get('/contact', publicController.contact);
 router.post('/contact', publicController.submitContact);
@@ -48,7 +48,7 @@ router.post('/add-sender-pdf', publicController.addSenderPdf);
 
 router.get('/pdf/invoice/:orderNo', publicController.invoicePdf);
 
-router.get('/', cache(60 * 60),publicController.home);
+router.get('/', cache(15),publicController.home);
 
 router.get('/what-is-the-uniform-domain-name-dispute-resolution-policy', publicController.udrp);
 // router.get('/the-fourth-circuit-dismisses-nikes-appeal-over-injunction', publicController.fourthCircuit);
@@ -120,26 +120,26 @@ router.post('/reset-password/:old/:email', publicController.forgotPasswordResetF
 
 
 // on dev
-router.get('/countries', cache(60 * 60), publicController.countries);
-router.get('/region/:abbr', cache(60 * 60), publicController.countriesAbbr);
+router.get('/countries', cache(15), publicController.countries);
+router.get('/region/:abbr', cache(15), publicController.countriesAbbr);
 
-router.get('/blog', cache(60 * 60), publicController.blog);
+router.get('/blog', cache(15), publicController.blog);
 router.post('/blog', publicController.blog);
-router.get('/blog/sitemap.xml', cache(60 * 60), publicController.blogXML);
+router.get('/blog/sitemap.xml', cache(15), publicController.blogXML);
 router.get('/blog/:slug', publicController.blogPost);
 router.get('/blog/:pageNo/:perPage', publicController.blog);
 
-router.get('/prices', cache(60 * 60), publicController.prices);
-router.get('/classes', cache(60 * 60), publicController.classes);
+router.get('/prices', cache(15), publicController.prices);
+router.get('/classes', cache(15), publicController.classes);
 router.get('/classes/:id', publicController.classesId);
 router.get('/class_descriptions', publicController.classDescription);
 router.post('/class_descriptions', publicController.classDescription);
-router.get('/videos', cache(60 * 60), publicController.videos);
+router.get('/videos', cache(15), publicController.videos);
 router.get('/videos/:slug', publicController.videoDetails);
 
-router.get('/monitoring-service', cache(60 * 60), publicController.monitoringService);
-router.get('/services', cache(60 * 60), publicController.service);
-router.get('/quote', cache(60 * 60), publicController.quote);
+router.get('/monitoring-service', cache(15), publicController.monitoringService);
+router.get('/services', cache(15), publicController.service);
+router.get('/quote', cache(15), publicController.quote);
 router.get('/quote/:type', publicController.quote);
 router.post('/quote/submit', publicController.quoteSubmit);
 
