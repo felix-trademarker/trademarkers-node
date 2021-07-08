@@ -23,21 +23,21 @@ const publicController = require('../controller/publicController')
 const registerController = require('../controller/registerController')
 const actionCodesController = require('../controller/actionCodesController')
 
-const {verify} = require('../controller/middleware');
+const {verify, cache} = require('../controller/middleware');
 
 var router = express.Router();
 
 // DECLARE ROUTES WITH ASSIGNED CONTROLLERS
 router.get('/video/:ytId', publicController.ytVideo);
-router.get('/about', publicController.about);
-router.get('/terms', publicController.terms);
-router.get('/privacy', publicController.privacy);
+router.get('/about', cache(60 * 60), publicController.about);
+router.get('/terms', cache(60 * 60), publicController.terms);
+router.get('/privacy', cache(60 * 60), publicController.privacy);
 
-router.get('/cookies', publicController.cookies);
-router.get('/service_contract', publicController.service_contract);
-router.get('/resources', publicController.resources);
+router.get('/cookies', cache(60 * 60), publicController.cookies);
+router.get('/service_contract', cache(60 * 60), publicController.service_contract);
+router.get('/resources', cache(60 * 60), publicController.resources);
 
-router.get('/oppositions-and-proof-of-use', publicController.oppositionProof);
+router.get('/oppositions-and-proof-of-use', cache(60 * 60), publicController.oppositionProof);
 
 router.get('/contact', publicController.contact);
 router.post('/contact', publicController.submitContact);
@@ -48,7 +48,7 @@ router.post('/add-sender-pdf', publicController.addSenderPdf);
 
 router.get('/pdf/invoice/:orderNo', publicController.invoicePdf);
 
-router.get('/', publicController.home);
+router.get('/', cache(60 * 60),publicController.home);
 
 router.get('/what-is-the-uniform-domain-name-dispute-resolution-policy', publicController.udrp);
 // router.get('/the-fourth-circuit-dismisses-nikes-appeal-over-injunction', publicController.fourthCircuit);
@@ -120,26 +120,26 @@ router.post('/reset-password/:old/:email', publicController.forgotPasswordResetF
 
 
 // on dev
-router.get('/countries', publicController.countries);
-router.get('/region/:abbr', publicController.countriesAbbr);
+router.get('/countries', cache(60 * 60), publicController.countries);
+router.get('/region/:abbr', cache(60 * 60), publicController.countriesAbbr);
 
-router.get('/blog', publicController.blog);
+router.get('/blog', cache(60 * 60), publicController.blog);
 router.post('/blog', publicController.blog);
-router.get('/blog/sitemap.xml', publicController.blogXML);
+router.get('/blog/sitemap.xml', cache(60 * 60), publicController.blogXML);
 router.get('/blog/:slug', publicController.blogPost);
 router.get('/blog/:pageNo/:perPage', publicController.blog);
 
-router.get('/prices', publicController.prices);
-router.get('/classes', publicController.classes);
+router.get('/prices', cache(60 * 60), publicController.prices);
+router.get('/classes', cache(60 * 60), publicController.classes);
 router.get('/classes/:id', publicController.classesId);
 router.get('/class_descriptions', publicController.classDescription);
 router.post('/class_descriptions', publicController.classDescription);
-router.get('/videos', publicController.videos);
+router.get('/videos', cache(60 * 60), publicController.videos);
 router.get('/videos/:slug', publicController.videoDetails);
 
-router.get('/monitoring-service', publicController.monitoringService);
-router.get('/services', publicController.service);
-router.get('/quote', publicController.quote);
+router.get('/monitoring-service', cache(60 * 60), publicController.monitoringService);
+router.get('/services', cache(60 * 60), publicController.service);
+router.get('/quote', cache(60 * 60), publicController.quote);
 router.get('/quote/:type', publicController.quote);
 router.post('/quote/submit', publicController.quoteSubmit);
 
