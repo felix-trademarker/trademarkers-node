@@ -1,5 +1,5 @@
 <div class="col-md-12" style="margin-bottom:20px;">  
-    <h2>Activity Logs List <a class="ml-3 btn btn-primary" href="/njs-admin/manage/videos/add"><i class="fa fa-plus" style="color:#fff"></i></a></h2>
+    <h2>Activity Logs (Limit 3 days)</h2>
 
     <% if (flash.success) { %>
     <div class="alert alert-success" role="alert">
@@ -22,7 +22,7 @@
                 <th>User</th>
                 <th>URL</th>
                 <th>Activity</th>
-                <th>Date Created</th>
+                <th style="width:100px;">Date Created</th>
                 <th></th>
             </tr>
         </thead>
@@ -30,7 +30,7 @@
         <% activities.forEach(function(activity,key) {  %>
    
             <tr>
-                <td><%= activity.ip %></td>
+                <td data-sort="<%= moment(activity.created_at_formatted).unix() %>" ><%= activity.ip %></td>
                 <td><%= activity.user %></td>
                 <td><%= activity.uri %></td>
                 <td><%= activity.activity %></td>

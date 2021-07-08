@@ -78,47 +78,47 @@ exports.home = async function(req, res, next) {
 
 
 
-    let continentsFormatted = [];
+    // let continentsFormatted = [];
 
-    await continents.forEach(async continent => {
+    // await continents.forEach(async continent => {
 
-      if ( continent.countries.length <= 0 ) {
-        // console.log("##################################");
-        // console.log("continent empty", continent.name);
+    //   if ( continent.countries.length <= 0 ) {
+    //     // console.log("##################################");
+    //     // console.log("continent empty", continent.name);
 
-        let countries = await rpoContinents.getCountryPerContinentMysql(continent.id)
-        let dataContinentUpdate = {
-          countries : countries
-        } 
-        await rpoContinents.updateDetails(continent._id,dataContinentUpdate)
+    //     let countries = await rpoContinents.getCountryPerContinentMysql(continent.id)
+    //     let dataContinentUpdate = {
+    //       countries : countries
+    //     } 
+    //     await rpoContinents.updateDetails(continent._id,dataContinentUpdate)
 
-        continent.countries = countries
-      }
+    //     continent.countries = countries
+    //   }
 
-      let op = continent.countries.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+    //   let op = continent.countries.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
 
       
-      // ES6 FILTER REMOVE DUPLICATES
-      op = op.filter((o, index, self) =>
-        index === self.findIndex((t) => (
-          t.name === o.name
-        ))
-      )
+    //   // ES6 FILTER REMOVE DUPLICATES
+    //   op = op.filter((o, index, self) =>
+    //     index === self.findIndex((t) => (
+    //       t.name === o.name
+    //     ))
+    //   )
 
-      continent.countries = op;
+    //   continent.countries = op;
 
-      continentsFormatted.push(continent);
+    //   continentsFormatted.push(continent);
 
-    });
+    // });
 
     let user = await helpers.getLoginUser(req);
 
     res.render('public/index', { 
       layout: 'layouts/public-layout', 
-      title: 'Trademarkers LLC',
+      title: 'Trademark Registration | Trademarkers LLC',
       description: '195 Countries and Treaty Regions can provide you with fast, simple, and cost-efficient trademark filing services',
-      keywords: 'Trademarkers LLC, trademark registration, register a trademark, trademark, trade mark, register a trade mark, trade mark registration, Trademark Attorneys, experience in Trademark Registrations, What is a Trademark',
-      continents: continentsFormatted,
+      keywords: 'Trademark Registration, Trademark Application, Register a Trademark, Trademark Search, Brand Registration, Brand Search, Logo Registration, Business Name Registration, step-by-step guide, how to register a trademark, Steps to register your trademark',
+      continents: continents,
       user: user
     });
      
@@ -132,7 +132,7 @@ exports.about = async function(req, res, next) {
 
   res.render('public/about', { 
     layout: 'layouts/public-layout-default', 
-    title: 'Trademarkers LLC | About',
+    title: 'Experience in Trademark Registrations | Trademarkers LLC',
     description: 'Trademarkers is a leading international brand protection company that specializes in global trademark registration',
     keywords: 'years of experience in Trademark Registrations, experience in Trademark Registrations, intellectual property attorneys, large businesses trademarking their brands',
     user: user
@@ -146,7 +146,7 @@ exports.terms = async function(req, res, next) {
 
   res.render('public/terms', { 
     layout: 'layouts/public-layout-default', 
-    title: 'terms',
+    title: 'Terms And Conditions | Trademarkers LLC',
     user: user
   });
 }
@@ -157,7 +157,7 @@ exports.privacy = async function(req, res, next) {
 
   res.render('public/privacy', { 
     layout: 'layouts/public-layout-default', 
-    title: 'privacy',
+    title: 'Privacy | Trademarkers LLC',
     user: await helpers.getLoginUser(req)
   });
 }
@@ -173,7 +173,7 @@ exports.register = async function(req, res, next) {
   // console.log('passed');
   res.render('public/register', { 
     layout: 'layouts/public-layout-default', 
-    title: 'Trademark Registration Service',
+    title: 'Trademark Application | Trademarkers LLC',
     user: user
   });
 }
@@ -245,7 +245,7 @@ exports.forgotPassword = async function(req, res, next) {
     // console.log('passed');
     res.render('public/forgot-password', { 
       layout: 'layouts/public-layout-default', 
-      title: 'Trademarkers LLC | Reset Password',
+      title: 'Reset Password | Trademarkers LLC',
       user: user
     });
 }
@@ -351,7 +351,7 @@ exports.forgotPasswordResetForm = async function(req, res, next) {
     // console.log('passed');
     res.render('public/reset-password', { 
       layout: 'layouts/public-layout-default', 
-      title: 'Trademarkers LLC | Reset Password',
+      title: 'Reset Password | Trademarkers LLC',
       user: user[0]
     });
 }
@@ -406,7 +406,7 @@ exports.service = async function(req, res, next) {
 
   res.render('public/service', { 
     layout: 'layouts/public-layout-default', 
-    title: 'service',
+    title: 'Trademark Application Services | Trademarkers LLC',
     countries: countries,
     user: await helpers.getLoginUser(req)
   });
@@ -420,7 +420,7 @@ exports.monitoringService = async function(req, res, next) {
 
   res.render('public/monitoring-service', { 
     layout: 'layouts/public-layout-default', 
-    title: 'monitoring Service',
+    title: 'Monitoring Service | Trademarkers LLC',
     countries: countries,
     user: await helpers.getLoginUser(req)
   });
@@ -507,7 +507,7 @@ exports.cookies = async function(req, res, next) {
 
   res.render('public/cookies', { 
     layout: 'layouts/public-layout-default', 
-    title: 'cookies',
+    title: 'Cookies | Trademarkers LLC',
     user: await helpers.getLoginUser(req)
   });
 }
@@ -548,7 +548,7 @@ exports.blog = async function(req, res, next) {
 
   res.render('public/blog', { 
     layout: 'layouts/public-layout-default', 
-    title: 'Trademarkers LLC | Blog',
+    title: 'News | Trademarkers LLC',
     articles: articles,
     searchTerm: searchTerm,
     pageNo: pageNo,
@@ -637,7 +637,7 @@ exports.classes = async function(req, res, next) {
 
   res.render('public/classes', { 
     layout: 'layouts/public-layout-default', 
-    title: 'Trademark Class Descriptions',
+    title: 'Trademark Class Descriptions | Trademarkers LLC',
     classes: classes,
     user: await helpers.getLoginUser(req)
   });
@@ -655,7 +655,7 @@ exports.classesId = async function(req, res, next) {
 
   res.render('public/classesDescription', { 
     layout: 'layouts/public-layout-default', 
-    title: 'Trademark Class Descriptions',
+    title: 'Trademark Class Descriptions | Trademarkers LLC',
     classes: classes,
     searchTerm: req.body.desc,
     user: await helpers.getLoginUser(req)
@@ -676,7 +676,7 @@ exports.classDescription = async function(req, res, next) {
 
   res.render('public/classesDescription', { 
     layout: 'layouts/public-layout-default', 
-    title: 'Trademark Class Descriptions',
+    title: 'Trademark Class Descriptions | Trademarkers LLC',
     classes: classes,
     searchTerm: req.body.desc,
     user: await helpers.getLoginUser(req)
@@ -689,7 +689,7 @@ exports.resources = async function(req, res, next) {
 
   res.render('public/resources', { 
     layout: 'layouts/public-layout-default', 
-    title: 'resources',
+    title: 'Resources | Trademarkers LLC',
     user: await helpers.getLoginUser(req)
   });
 }
@@ -702,7 +702,7 @@ exports.videos = async function(req, res, next) {
 
   res.render('public/videos', { 
     layout: 'layouts/public-layout-default', 
-    title: 'resources',
+    title: 'Videos | Trademarkers LLC',
     user: await helpers.getLoginUser(req),
     videos: videos
   });

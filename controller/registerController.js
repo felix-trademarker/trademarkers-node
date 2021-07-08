@@ -95,9 +95,9 @@ exports.registration = async function(req, res, next) {
   // console.log('asd',country);
   res.render('order/registrationLanding', {
     layout: layout, 
-    title: 'Trademark Registration | Trademarkers LLC',
-    description: 'Trademarkers is a leading international brand protection company that specializes in global trademark registration',
-    keywords: 'Trademark Registration, Trademark Study, Trademark Registration in '+ country[0].name +', register a trademark in '+ country[0].name+', trademark study in '+ country[0].name,
+    title: 'Trademark Filings | Trademarkers LLC',
+    description: 'With representation in almost every major jurisdiction, TradeMarkers has up-to-date information on trademark application activities',
+    keywords: 'Trademark Filing, Trademark Study, Trademark Registration in '+ country[0].name +', register a trademark in '+ country[0].name+', trademark study in '+ country[0].name +', trademark application in '+country[0].name+', trademark filings in '+country[0].name,
     country: country[0],
     prices: prices,
     classes: classes,
@@ -178,9 +178,9 @@ exports.registrationProceed = async function(req, res, next) {
 
   res.render('order/registration', {
     layout: 'layouts/public-layout-default', 
-    title: 'Register a Trademark | Trademarkers LLC',
-    description: 'Trademarkers is a leading international brand protection company that specializes in global trademark registration',
-    keywords: 'Trademark Registration in '+ country[0].name +', register a trademark in '+ country[0].name,
+    title: 'Trademark '+serviceType+' in '+country[0].name+' | Trademarkers LLC',
+    description: "In order to proceed with Trademark "+serviceType+" in "+ country[0].name +" please fill out the following form. You'll have to provide information about the Trademark, the Administrative contact and the Owner.",
+    keywords: 'Trademark Filings in '+country[0].name+', Trademark application in '+country[0].name+', Trademark '+serviceType+' in '+country[0].name,
     country: country[0],
     price: price,
     classes: classes,

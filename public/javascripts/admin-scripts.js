@@ -34,19 +34,24 @@ $( document ).ready(function() {
   });
 
   var adminDataTableTrademarks = $("#dataTableTrademarks").DataTable({
+    dom: 'Bfrtip',
     "order": [[ 0, "desc" ]], //or asc 
     "columnDefs" : [{"targets":0, "type":"numeric"}],
-    dom: 'Bfrtip',
-        buttons: [
-          {
-            extend: 'csv',
-            text: 'Download CSV'
-          },
-          {
-            extend: 'print',
-            text: 'Print Data'
-          }
-        ]
+    
+    buttons: [
+      {
+        extend: 'csv',
+        text: 'Download CSV',
+        className: 'btn btn-primary',
+      },
+      {
+        extend: 'print',
+        text: 'Print Data',
+        className: 'btn btn-primary',
+      }
+    ],
+    "pageLength": 20,
+    // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
   });
 
   if ( $("#myListDataTable").length ) {

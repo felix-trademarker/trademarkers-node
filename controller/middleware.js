@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+var mcache = require('memory-cache');
 
 exports.verify = function(req, res, next){
     let accessToken = req.cookies.jwt
@@ -134,5 +135,23 @@ exports.guardReviewer = function(req, res, next){
 
         res.redirect('/login'); 
         return res.status(401).send()
+    }
+}
+
+exports.cache = function(duration){
+    return (req, res, next) => {
+        let key = '__express__' + req.originalUrl || req.url
+        let cachedBody = mcache.get(key)
+        if (cachedBody) {
+          res.send(cachedBody)
+          return
+        } else {
+          res.sendResponse = res.send
+          res.send = (body) => {
+            mcache.put(key, body, duration * 1000);
+            res.sendResponse(body)
+          }
+          next()
+        }
     }
 }

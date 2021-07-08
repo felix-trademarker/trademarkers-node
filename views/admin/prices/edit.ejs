@@ -1,0 +1,82 @@
+<div class="col-md-12" style="margin-bottom:20px;">    
+    <h2>Edit
+    </h2>
+
+
+
+
+    <form class="row" action="/njs-admin/manage/prices/edit/<%= list._id %>" method="post" encType="multipart/form-data">
+
+    
+
+        <div class="col-md-12">
+            <hr>
+
+            <div class="form-group">
+                <label>Service</label>
+                <select class="form-control" name="service_type">
+                    <option value="Study" <%= list.service_type == 'Study' ? "selected":"" %> >Study</option>
+                    <option value="Registration" <%= list.service_type == 'Registration' ? "selected":"" %> >Registration</option>
+                    <option value="Certificate" <%= list.service_type == 'Certificate' ? "selected":"" %> >Certificate</option>
+                    <option value="Trademark Protest" <%= list.service_type == 'Trademark Protest' ? "selected":"" %> >Trademark Protest</option>
+                    <option value="Trademark 9th - 10th year Renew (9-71)" <%= list.service_type == 'Trademark 9th - 10th year Renew (9-71)' ? "selected":"" %> >Trademark 9th - 10th year Renew (9-71)</option>
+                    <option value="Trademark 9th - 10th year Renew (9)" <%= list.service_type == 'Trademark 9th - 10th year Renew (9)' ? "selected":"" %> >Trademark 9th - 10th year Renew (9)</option>
+                    <option value="Trademark 5th - 6th year Renew (8-15)" <%= list.service_type == 'Trademark 5th - 6th year Renew (8-15)' ? "selected":"" %> >Trademark 5th - 6th year Renew (8-15)</option>
+                    <option value="Trademark 5th - 6th year Renew (8)" <%= list.service_type == 'Trademark 5th - 6th year Renew (8)' ? "selected":"" %> >Trademark 5th - 6th year Renew (8)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Word Initial Cost</label>
+                <input type="number" step="any" class="form-control" value="<%= list.initial_cost %>" name="initial_cost">
+            </div>
+
+            <div class="form-group">
+                <label>Word Additional Cost</label>
+                <input type="number" step="any" class="form-control" value="<%= list.additional_cost %>" name="additional_cost">
+            </div>
+
+            <div class="form-group">
+                <label>Logo Initial Cost</label>
+                <input type="number" step="any" class="form-control" value="<%= list.logo_initial_cost %>" name="logo_initial_cost">
+            </div>
+
+            <div class="form-group">
+                <label>Logo Additional Cost</label>
+                <input type="number" step="any" class="form-control" value="<%= list.logo_additional_cost %>" name="logo_additional_cost">
+            </div>
+
+            <div class="form-group">
+                <label>Tax</label>
+                <input type="number" step="any" class="form-control" value="<%= list.tax %>" name="tax">
+            </div>
+
+            <div class="form-group">
+                <label>Country</label>
+                <select class="form-control" name="country_id">
+                    <option value="">-</option>
+                    <% countries.forEach(function(country,key) {  %>
+                    <option value="<%= country.id %>" <%= list.country_id == country.id ? "selected":"" %> ><%= country.name %></option>
+                    <% }) %>
+                </select>
+            </div>
+            
+
+
+
+
+        </div>
+
+       
+
+        <div class="col-md-12">
+            <p class="text-center">
+                <button type="submit" class="btn btn-primary btn-rounded-primary" style="padding-left:40px;padding-right:40px;">Update</button>
+            </p>
+        </div>
+
+    </form>
+
+</div>
+        
+

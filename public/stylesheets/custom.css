@@ -108,3 +108,7 @@
     list-style: none;
     padding: 15px
 }
+
+.btn-primary span{
+    color: #fff;
+}

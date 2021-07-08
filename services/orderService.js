@@ -93,6 +93,8 @@ exports.getOldOrders = async function(obj) {
           serviceType = 'study';
         } else if(trademarks[t].service == "Trademark Monitoring"){
           serviceType = 'monitoring';
+        } else {
+          serviceType = 'others';
         }
 
         if (trademarks[t].type == "Word-Only") {

@@ -301,6 +301,9 @@ exports.formatTextMongoValue = function(txt) {
 
         case 'monitoring':
             return "Trademark Monitoring"
+            
+        case 'others':
+            return "Other Services"
 
         case 'word':
             return "Word-Only"

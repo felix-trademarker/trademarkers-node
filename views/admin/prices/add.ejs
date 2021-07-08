@@ -1,0 +1,77 @@
+<div class="col-md-12" style="margin-bottom:20px;">    
+    <h2>Add
+    </h2>
+
+
+
+
+    <form class="row" action="/njs-admin/manage/prices/add" method="post" encType="multipart/form-data">
+
+    
+
+        <div class="col-md-12">
+            <hr>
+
+            <div class="form-group">
+                <label>Service</label>
+                <select class="form-control" name="service_type">
+                    <option value="Study">Study</option>
+                    <option value="Registration">Registration</option>
+                    <option value="Certificate">Certificate</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Word Initial Cost</label>
+                <input type="number" step="any" class="form-control" value="" name="initial_cost">
+            </div>
+
+            <div class="form-group">
+                <label>Word Additional Cost</label>
+                <input type="number" step="any" class="form-control" value="" name="additional_cost">
+            </div>
+
+            <div class="form-group">
+                <label>Logo Initial Cost</label>
+                <input type="number" step="any" class="form-control" value="" name="logo_initial_cost">
+            </div>
+
+            <div class="form-group">
+                <label>Logo Additional Cost</label>
+                <input type="number" step="any" class="form-control" value="" name="logo_additional_cost">
+            </div>
+
+            <div class="form-group">
+                <label>Tax</label>
+                <input type="number" step="any" class="form-control" value="" name="tax">
+            </div>
+
+            <div class="form-group">
+                <label>Country</label>
+                <select class="form-control" name="country_id">
+                    <option value="">-</option>
+                    <% countries.forEach(function(country,key) {  %>
+                    <option value="<%= country.id %>" ><%= country.name %></option>
+                    <% }) %>
+                </select>
+            </div>
+            
+
+
+
+
+        </div>
+
+       
+
+        <div class="col-md-12">
+            <p class="text-center">
+                <button type="submit" class="btn btn-primary btn-rounded-primary" style="padding-left:40px;padding-right:40px;">Update</button>
+            </p>
+        </div>
+
+    </form>
+
+</div>
+        
+

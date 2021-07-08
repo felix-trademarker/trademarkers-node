@@ -152,8 +152,8 @@ module.exports = {
 				function(err, result) {
 					if (err) throw err;
 
-					// mailService.notifyNewAccount(data)
-					// mailService.verifyEmailAccount(data)
+					mailService.notifyNewAccount(data)
+					mailService.verifyEmailAccount(data)
 					resolve(result);
 				}
 			);
