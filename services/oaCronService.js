@@ -35,7 +35,11 @@ for (let i = 0; count < 1 ; i++) {
     if ( rec[i].statusDescription == "A first request for extension of time to file a Statement of Use has been granted." ) {
       deadLine = moment(noticeOfAllowanceDateFormatted).add(12, "M").format("YYYY-MM-DD");
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> f51513465ff92a3d1c40af5e3b5411050ee425c6
     // let noaDeadLine = moment(noticeOfAllowanceDateFormatted).diff(deadLine, "months");
     console.log('dead date', moment(deadLine).diff(moment(), "weeks"));
     
