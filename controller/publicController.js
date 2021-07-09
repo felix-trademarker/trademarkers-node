@@ -67,7 +67,49 @@ var groupBy = function(xs, key) {
 
 exports.home = async function(req, res, next) {
 
+  // let tet = await rpoEuipo.getAll();
+  // console.log('eu',tet);
+
     activityService.logger(req.ip, req.originalUrl, "Visited Homepage", req);
+
+    var getClientIp = req.headers['x-real-ip'] || req.connection.remoteAddress;
+
+    let continents = await rpoContinents.getContinents();
+
+
+
+    // let continentsFormatted = [];
+
+    // await continents.forEach(async continent => {
+
+    //   if ( continent.countries.length <= 0 ) {
+    //     // console.log("##################################");
+    //     // console.log("continent empty", continent.name);
+
+    //     let countries = await rpoContinents.getCountryPerContinentMysql(continent.id)
+    //     let dataContinentUpdate = {
+    //       countries : countries
+    //     } 
+    //     await rpoContinents.updateDetails(continent._id,dataContinentUpdate)
+
+    //     continent.countries = countries
+    //   }
+
+    //   let op = continent.countries.sort((a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+
+      
+    //   // ES6 FILTER REMOVE DUPLICATES
+    //   op = op.filter((o, index, self) =>
+    //     index === self.findIndex((t) => (
+    //       t.name === o.name
+    //     ))
+    //   )
+
+    //   continent.countries = op;
+
+    //   continentsFormatted.push(continent);
+
+    // });
 
     let user = await helpers.getLoginUser(req);
 
@@ -76,6 +118,7 @@ exports.home = async function(req, res, next) {
       title: 'Trademark Registration | Trademarkers LLC',
       description: '195 Countries and Treaty Regions can provide you with fast, simple, and cost-efficient trademark filing services',
       keywords: 'Trademark Registration, Trademark Application, Register a Trademark, Trademark Search, Brand Registration, Brand Search, Logo Registration, Business Name Registration, step-by-step guide, how to register a trademark, Steps to register your trademark',
+      continents: continents,
       user: user
     });
      
