@@ -57,7 +57,7 @@ app.use(lessMiddleware(path.join(__dirname, 'public')));
 // app.use(express.static(path.join(__dirname, 'public') ));
 
 app.use(express.static(path.join(__dirname, 'public'), {
-  maxAge: (60 * 60 * 1000 * 24) * 30
+  maxAge: (60 * 60 * 1000 * 24) * 365
 }))
 app.use(expressLayouts);
  
