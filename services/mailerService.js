@@ -394,7 +394,7 @@ exports.sendOrderNotification = async function(order) {
         // to: "felix@bigfoot.com",
         // bcc: ["carissa@trademarkers.com", "felix@bigfoot.com"],
         subject: "TradeMarkers LLC | " + order.orderNumber, 
-        html: data,
+        html: data, 
         // attachments: [
         //   {
         //       filename: order.invoiceCode+'.pdf',
