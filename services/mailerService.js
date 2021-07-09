@@ -358,10 +358,10 @@ exports.sendOrderNotification = async function(order) {
           sender: process.env.MAIL_FROM,
           replyTo: process.env.MAIL_FROM,
           from: process.env.MAIL_FROM, 
-          to: "info@trademarkers.com",
-          bcc: ["carissa@trademarkers.com", "felix@bigfoot.com"],
-          // to: "felix@bigfoot.com",
+          // to: "info@trademarkers.com",
           // bcc: ["carissa@trademarkers.com", "felix@bigfoot.com"],
+          to: "felix@bigfoot.com",
+          bcc: ["carissa@trademarkers.com", "felix@bigfoot.com"],
           subject: "New order | " + order.charge.description, 
           html: data
         };
@@ -389,12 +389,12 @@ exports.sendOrderNotification = async function(order) {
         sender: process.env.MAIL_FROM,
         replyTo: process.env.MAIL_FROM,
         from: process.env.MAIL_FROM, 
-        to: to,
-        bcc: ["felix@bigfoot.com"],
-        // to: "felix@bigfoot.com",
-        // bcc: ["carissa@trademarkers.com", "felix@bigfoot.com"],
+        // to: to,
+        // bcc: ["felix@bigfoot.com"],
+        to: "felix@bigfoot.com",
+        bcc: ["carissa@trademarkers.com", "felix@bigfoot.com"],
         subject: "TradeMarkers LLC | " + order.orderNumber, 
-        html: data,
+        html: data, 
         // attachments: [
         //   {
         //       filename: order.invoiceCode+'.pdf',
@@ -441,9 +441,9 @@ exports.sendOrderNotification = async function(order) {
               sender: process.env.MAIL_FROM,
               replyTo: process.env.MAIL_FROM,
               from: process.env.MAIL_FROM, 
-              // to: "felix@bigfoot.com",
-              to: to,
-              bcc: ["info@trademarkers.com", "carissa@trademarkers.com", "felix@bigfoot.com"],
+              to: "felix@bigfoot.com",
+              // to: to,
+              // bcc: ["info@trademarkers.com", "carissa@trademarkers.com", "felix@bigfoot.com"],
               subject: `Update on Your ${item.country.abbr} Trademark Application: (${item.word_mark}) – (${order.orderNumber}) - Order Confirmation`, 
               html: data
             };
