@@ -213,15 +213,18 @@ $( document ).ready(function() {
 
 
   // get cart items count
-  $.ajax({
-    url: "/api/v1/getcartItems",
-    type:"GET",
-    contentType: "application/json",
-    success: function( result ) {
-      $("#shopping-cart").text(result.count)
-      // console.log(result);
-    }
-  });    
+  if ( $(".header-nav").hasClass('isLogged') ) {
+    $.ajax({
+      url: "/api/v1/getcartItems",
+      type:"GET",
+      contentType: "application/json",
+      success: function( result ) {
+        $("#shopping-cart").text(result.count)
+        // console.log(result);
+      }
+    });  
+  }
+    
 
   $("#customerPassword").keypress(function(e){
 
