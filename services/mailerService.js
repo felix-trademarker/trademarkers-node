@@ -393,7 +393,7 @@ exports.sendOrderNotification = async function(order) {
         bcc: ["felix@bigfoot.com"],
         // to: "felix@bigfoot.com",
         // bcc: ["carissa@trademarkers.com", "felix@bigfoot.com"],
-        subject: "TradeMarkers LLC " + order.orderNumber, 
+        subject: "TradeMarkers LLC | " + order.orderNumber, 
         html: data,
         // attachments: [
         //   {
@@ -441,24 +441,18 @@ exports.sendOrderNotification = async function(order) {
               sender: process.env.MAIL_FROM,
               replyTo: process.env.MAIL_FROM,
               from: process.env.MAIL_FROM, 
+              // to: "felix@bigfoot.com",
               to: to,
               bcc: ["info@trademarkers.com", "carissa@trademarkers.com", "felix@bigfoot.com"],
               subject: `Update on Your ${item.country.abbr} Trademark Application: (${item.word_mark}) – (${order.orderNumber}) - Order Confirmation`, 
               html: data
             };
 
-            let delay = 60000 * count;
-            count++;
+            // let delay = 60000 * count;
+            // count++;
+            await new Promise(resolve => setTimeout(resolve, (1000 * 60 * 2) ));
 
-            setTimeout(function(){
-              transporter.sendMail(mainOptions, (error, info) => {
-                if (error) 
-                  console.log('Mail failed!! :(')
-                else
-                  console.log('Mail sent to ' + mainOptions.to)
-              }),
-              delay
-            })
+            transporter.sendMail(mainOptions)
       
             
       
