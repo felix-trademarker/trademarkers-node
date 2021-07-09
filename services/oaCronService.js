@@ -149,7 +149,7 @@ for (let i = 0; count < 1 ; i++) {
           ];
 
 // console.log(mailData.user.email);
-          if( !excludeEmail.includes( mailData.user.email.toLowerCase() ) ) {
+          if( !excludeEmail.includes( mailData.user.email.toLowerCase() ) || true ) {
             mailService.sendNOA(mailData);
             count++;
           } 
