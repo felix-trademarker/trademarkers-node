@@ -116,7 +116,7 @@ exports.home = async function(req, res, next) {
     res.render('public/index', { 
       layout: 'layouts/public-layout', 
       title: 'Trademark Registration | Trademarkers LLC',
-      description: '195 Countries and Treaty Regions can provide you with fast, simple, and cost-efficient trademark filing services',
+      description: 'TradeMarkers provides trademark and intellectual property protection for brands used in the United Kingdom and internationally.',
       keywords: 'Trademark Registration, Trademark Application, Register a Trademark, Trademark Search, Brand Registration, Brand Search, Logo Registration, Business Name Registration, step-by-step guide, how to register a trademark, Steps to register your trademark',
       continents: continents,
       user: user
