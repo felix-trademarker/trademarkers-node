@@ -6,8 +6,10 @@ let _variables = require('../config/variables');
 
 let geoip = require('geoip-lite');
 let helpers = require('../helpers')
+let mailService = require('../services/mailerService')
 
 const { toInteger } = require('lodash');
+const ObjectsToCsv = require('objects-to-csv')
 let moment = require('moment');
 
 exports.logger = async function(ip, page, msg, req) {
@@ -159,5 +161,38 @@ exports.trackingEmailSOU = async function(ip, data) {
     
 
  
+}
+
+
+exports.fetchActivities = async function() {
+    // console.log('this', ip);
+
+    let dateFetch = toInteger(moment().subtract(1,'days').format('YYMMDD'))
+    // console.log(dateFetch);
+
+    let activities = await rpoActivity.getActivitiesPerDate(dateFetch)
+
+    // console.log(activities);
+    
+
+    // create csv ang mail to anya
+    const csv = new ObjectsToCsv(activities)
+
+    // console.log(csv);
+    let csvPath = __dirname + '/../public/activities-csv/activity-'+dateFetch+'.csv'
+
+    await csv.toDisk(csvPath, { append: true })
+
+    // send to anya
+    let mailData = {
+        subject: "Customer Logs " + moment().subtract(1,'days').format('MMM D, YYYY'),
+        message: "Customer Logs " + moment().subtract(1,'days').format('MMM D, YYYY'),
+        attachement: [
+            {
+              filename: 'activity logs '+moment().subtract(1,'days').format('MMM D, YYYY')+'.csv',
+              path: process.env.APP_URL +"/activities-csv/activity-"+dateFetch+".csv"
+            }]
+    }
+    mailService.sendCustomerLogs(mailData)
 }
 

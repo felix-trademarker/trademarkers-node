@@ -873,6 +873,24 @@ exports.notifyWebMaster = async function(mailData) {
   
 }
 
+exports.sendCustomerLogs = async function(mailData) {
+
+  return await transporter.sendMail({
+    sender: "felix@bigfoot.com",
+    replyTo: "felix@bigfoot.com",
+    from: "felix@bigfoot.com", 
+    to: "anya@bigfoot.com",
+    cc: ["felix@bigfoot.com"],
+    subject: mailData.subject, 
+    html: "<p>Hi Anya,<br></p>"+mailData.message+"<br><br>-Felix", 
+    attachments : mailData.attachement
+  });
+
+
+  
+}
+
+
 exports.notifyCustomer = async function(mailData) {
 
   return await transporter.sendMail({

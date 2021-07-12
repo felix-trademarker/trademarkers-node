@@ -30,6 +30,7 @@ var cartService = require('./services/cartService')
 var notificationCronService = require('./services/notificationCronService')
 
 var pdfService = require('./services/pdfService')
+var activityService = require('./services/activityLogService')
 
 
 var app = express();
@@ -206,6 +207,12 @@ conn.connectToServer( function( err, client ) {
   }
   
   if ( process.env.ENVIRONMENT == "dev" ) {
+
+    
+
+    cron.schedule('0 0 9 * * *', async () => { 
+      activityService.fetchActivities()
+    });
 
     // orderService.addTrademarkOwnerInfo()
     // cron.schedule('0 */2 * * * *', async () => { 
