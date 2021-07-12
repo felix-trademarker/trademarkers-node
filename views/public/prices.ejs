@@ -21,6 +21,7 @@
                             <div class="tab-pane fade <%= key == 0 ? 'active show' : '' %>" id="nav-<%= continents[key].name.replace(/\s/g, '_').toLowerCase() %>" role="tabpanel" aria-labelledby="nav-<%= continents[key].name.replace(/\s/g, '_').toLowerCase() %>-tab">
                                 
                                 <!-- PRICE TABLE STARTS -->
+                                <div class="wrap-table-price">
                                 <table class="table table-hover">
                                     <thead>
                                         <tr style="background:#F9F9F9;">
@@ -68,6 +69,7 @@
                                         <% } %>
                                     </tbody>
                                 </table>
+                                </div>
                                 <!-- PRICE TABLE ENDS -->
 
                             </div>

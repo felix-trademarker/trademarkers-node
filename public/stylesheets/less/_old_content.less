@@ -742,7 +742,7 @@
         margin-bottom : 10px;
 
         .card-body{
-            overflow: scroll;
+            // overflow: scroll;
 
             .icon-wrapper{
 
@@ -1815,6 +1815,12 @@ ul.rev-arrow-v2 {
             margin: 0;
             position: relative;
             top: -3px;
+
+            @media (max-width: 768px){
+                float: none;
+                top: 0;
+                margin: 15px 0;
+            }
         }
     }
 }
@@ -2130,34 +2136,48 @@ ul.theme-default {
     border-radius: 10px;
     margin-bottom: 60px;
 
-    &:before{
-        content:"";
-        display: block;
-        width : 300px;
-        height : 300px;
-        border-radius: 300px;
-        background: @colorCircleHead;
-        // border: 50px solid @colorCircleHead;
-        position: absolute;
-        top: 150px;
-        left: 10%;
-        opacity: 0.1;
-        z-index: -1;
+    @media (max-width: 768px){
+        padding: 20px 0px;
+        margin-bottom: 60px;
+        margin-left: 0;
+        margin-right: 0;
+
+        h2{
+            font-size:21px;
+        }
     }
 
-    &:after{
-        content:"";
-        display: block;
-        width : 400px;
-        height : 400px;
-        border-radius: 400px;
-        background: @colorCircleHead;
-        // border: 50px solid @colorCircleHead;
-        position: absolute;
-        top: 160px;
-        right: 7%;
-        opacity: 0.1;
-        z-index: -1;
+    @media (min-width: 768px){
+        
+        &:before{
+            content:"";
+            display: block;
+            width : 300px;
+            height : 300px;
+            border-radius: 300px;
+            background: @colorCircleHead;
+            // border: 50px solid @colorCircleHead;
+            position: absolute;
+            top: 150px;
+            left: 10%;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        &:after{
+            content:"";
+            display: block;
+            width : 400px;
+            height : 400px;
+            border-radius: 400px;
+            background: @colorCircleHead;
+            // border: 50px solid @colorCircleHead;
+            position: absolute;
+            top: 160px;
+            right: 7%;
+            opacity: 0.1;
+            z-index: -1;
+        }
     }
 }
 

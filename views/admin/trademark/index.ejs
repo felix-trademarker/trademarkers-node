@@ -48,7 +48,7 @@
                 }
                 %>
                 <td data-sort="<%= moment(dateCreated).unix() %>"><%= searched ? 'Searched': dateCreated ? moment(dateCreated).format('MMM D, YYYY') : '-' %></td>
-                <td><%= trademark.user ? trademark.user.name : '-' %></td>
+                <td><%= trademark.user ? trademark.user.name : trademark.userEmail %></td>
 
                 <% if (trademark.serviceType) { %>
                     <td>Trademark <span style="text-transform: capitalize;"><%= trademark.serviceType %></span></td>

@@ -836,6 +836,7 @@ exports.placeOrder = async function(req, res, next) {
         // create trademark from cart item
           let trademark = {
             userId: items.userId,
+            user: items.user,
             orderCode: orderCode,
             userEmail: items.user.email,
             serialNumber: null,
@@ -986,6 +987,7 @@ exports.placeOrder = async function(req, res, next) {
       // create trademark from cart item
         let trademark = {
           userId: items.userId,
+          user: items.user,
           orderCode: orderCode,
           userEmail: items.user.email,
           serialNumber: null,
