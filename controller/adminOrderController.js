@@ -1,4 +1,5 @@
 var rpo = require('../repositories/orders');
+var rpoInvoice = require('../repositories/invoice');
 var rpoUsers = require('../repositories/usersMongo');
 var rpoAdminActivity = require('../repositories/adminActivityLog')
 var activityLog = require('../services/adminActivityLogService');
@@ -90,6 +91,17 @@ exports.editSubmit = async function(req, res, next) {
   activityLog.logger(activityData, req);
 
   await rpo.update(id, updateData);
+
+  if (order[0].invoiceCode) {
+    let invoice = await rpoInvoice.findInvoiceNumber(order[0].invoiceCode)
+    console.log(invoice);
+    let invoiceData = {
+      paid: updateData.paid
+    }
+
+    await rpoInvoice.update(invoice[0]._id, invoiceData);
+  }
+  
 
   
 

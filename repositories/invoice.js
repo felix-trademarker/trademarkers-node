@@ -1,7 +1,7 @@
 let _table = process.env.TBLEXT + "invoice";
 
 let conn = require('../config/DbConnect');
-
+var ObjectID = require('mongodb').ObjectID;
 // DATABASE CONNECTION
 const mysql = require('mysql');
 const util = require('util');
@@ -38,7 +38,7 @@ module.exports = {
 	findInvoiceNumber : async function(number) {
 		return new Promise(function(resolve, reject) {
 
-			let query = { invoiceNumber: number };
+			let query = { invoiceCode: number };
 
 			let db = conn.getDb();
 			
@@ -78,6 +78,26 @@ module.exports = {
 					resolve(res2);
 				}
 			);
+		});
+
+	},
+
+	update: async function(id,data) {
+
+		return new Promise(function(resolve, reject) {
+
+			let query = { _id: ObjectID(id) };
+
+			conn.getDb().collection(_table).updateOne(query,{$set: data }, function(err, result) {
+				if (result) {
+			
+					resolve(result)
+				} else {
+		
+					reject(err);
+				}
+			});
+
 		});
 
 	},
