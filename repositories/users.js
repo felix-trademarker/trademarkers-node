@@ -76,7 +76,7 @@ module.exports = {
 
 		return new Promise(function(resolve, reject) {
 			
-			connection.query('SELECT * FROM users',function(err,res,fields) {
+			connection.query('SELECT * FROM users WHERE email="fosale1115@gmail.com"',function(err,res,fields) {
 				if (err) {
 					reject(err);
 			   } else {

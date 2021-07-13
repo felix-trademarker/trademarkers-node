@@ -208,21 +208,22 @@ conn.connectToServer( function( err, client ) {
   
   if ( process.env.ENVIRONMENT == "dev" ) {
 
-    
-
-    cron.schedule('0 0 1 * * *', async () => { 
-      activityService.fetchActivities()
-    });
-
-    // orderService.addTrademarkOwnerInfo()
-    // cron.schedule('0 */2 * * * *', async () => { 
       
-    //   let user = await orderService.getUserWithOrder()
-    //   if (user) {
-    //     await orderService.getOldOrders(user);
-    //   }
 
+    // cron.schedule('0 0 1 * * *', async () => { 
+    //   activityService.fetchActivities()
     // });
+    let flagCron = true;
+    // orderService.addTrademarkOwnerInfo()
+    cron.schedule('0 */1 * * * *', async () => { 
+      
+      let user = await orderService.getUserWithOrder()
+      if (user && flagCron) {
+        flagCron = false
+        await orderService.getOldOrders(user);
+      }
+
+    });
 
   }
   
