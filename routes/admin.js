@@ -35,6 +35,7 @@ router.get('/manage/trademark', verify, guardAdmin, adminTrademark.index);
 router.get('/manage/trademark/view/:id', verify, guardAdmin, adminTrademark.show);
 router.get('/manage/trademark/edit/:id', verify, guardAdmin, adminTrademark.edit);
 router.post('/manage/trademark/edit/:id', verify, guardAdmin, adminTrademark.editSubmit);
+router.get('/manage/trademark/delete/:id', verify, guardAdmin, adminTrademark.deleteRecord);
  
 router.get('/manage/events', verify, guardAdmin, adminEvent.events);
 router.get('/manage/events/view/:id', verify, guardAdmin, adminEvent.show);

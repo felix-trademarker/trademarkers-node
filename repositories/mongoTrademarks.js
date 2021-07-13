@@ -280,6 +280,25 @@ module.exports = {
 
 	},
 
+	remove: async function(id) {
+
+		return new Promise(function(resolve, reject) {
+
+			let query = { _id: ObjectID(id) };
+
+			conn.getDb().collection(_table).deleteOne(query, function(err, result) {
+				if (result) {
+					console.log('ok');
+					resolve(result)
+				} else {
+					console.log('err', err.message);
+					reject(err);
+				}
+			});
+		});
+
+    }
+
 	
 	
 };
