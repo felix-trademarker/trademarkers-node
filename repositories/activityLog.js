@@ -68,6 +68,30 @@ module.exports = {
 		});
 	},
 
+	getActivitiesPerDate : async function(dateFetch) {
+		return new Promise(function(resolve, reject) {
+
+			// let query = { created_at: dateFetch }
+			let query = { created_at: 210701 }
+// console.log(query);
+			let field = { fields : { ip: 1, user:1, uri: 1, activity: 1, created_at_formatted: 1 } };
+			
+			conn.getDb().collection(_table)
+				.find(query, field)
+				.sort({"created_at": -1})
+				.toArray(function(err, result) {
+					
+				if (err) {
+					reject(err);
+				} else {
+					resolve(result);
+				}
+
+			});
+
+		});
+	},
+
 	getById : async function(id) {
 		return new Promise(function(resolve, reject) {
 

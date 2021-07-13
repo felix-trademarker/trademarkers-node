@@ -2,6 +2,6 @@
 Options +FollowSymlinks
 
 RewriteEngine on 
-RewriteRule ^trademark-registration-(.*)$ map/$1
+RewriteRule ^trademarkers-registration-(.*)$ map/$1
 
 </IfModule>

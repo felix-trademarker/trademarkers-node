@@ -358,10 +358,10 @@ exports.sendOrderNotification = async function(order) {
           sender: process.env.MAIL_FROM,
           replyTo: process.env.MAIL_FROM,
           from: process.env.MAIL_FROM, 
-          to: "info@trademarkers.com",
-          bcc: ["carissa@trademarkers.com", "felix@bigfoot.com"],
-          // to: "felix@bigfoot.com",
+          // to: "info@trademarkers.com",
           // bcc: ["carissa@trademarkers.com", "felix@bigfoot.com"],
+          to: "felix@bigfoot.com",
+          bcc: ["carissa@trademarkers.com", "felix@bigfoot.com"],
           subject: "New order | " + order.charge.description, 
           html: data
         };
@@ -389,10 +389,10 @@ exports.sendOrderNotification = async function(order) {
         sender: process.env.MAIL_FROM,
         replyTo: process.env.MAIL_FROM,
         from: process.env.MAIL_FROM, 
-        to: to,
-        bcc: ["felix@bigfoot.com"],
-        // to: "felix@bigfoot.com",
-        // bcc: ["carissa@trademarkers.com", "felix@bigfoot.com"],
+        // to: to,
+        // bcc: ["felix@bigfoot.com"],
+        to: "felix@bigfoot.com",
+        bcc: ["carissa@trademarkers.com", "felix@bigfoot.com"],
         subject: "TradeMarkers LLC | " + order.orderNumber, 
         html: data, 
         // attachments: [
@@ -441,9 +441,9 @@ exports.sendOrderNotification = async function(order) {
               sender: process.env.MAIL_FROM,
               replyTo: process.env.MAIL_FROM,
               from: process.env.MAIL_FROM, 
-              // to: "felix@bigfoot.com",
-              to: to,
-              bcc: ["info@trademarkers.com", "carissa@trademarkers.com", "felix@bigfoot.com"],
+              to: "felix@bigfoot.com",
+              // to: to,
+              // bcc: ["info@trademarkers.com", "carissa@trademarkers.com", "felix@bigfoot.com"],
               subject: `Update on Your ${item.country.abbr} Trademark Application: (${item.word_mark}) – (${order.orderNumber}) - Order Confirmation`, 
               html: data
             };
@@ -872,6 +872,24 @@ exports.notifyWebMaster = async function(mailData) {
   });
   
 }
+
+exports.sendCustomerLogs = async function(mailData) {
+
+  return await transporter.sendMail({
+    sender: "felix@bigfoot.com",
+    replyTo: "felix@bigfoot.com",
+    from: "felix@bigfoot.com", 
+    to: "anya@bigfoot.com",
+    cc: ["felix@bigfoot.com"],
+    subject: mailData.subject, 
+    html: "<p>Hi Anya,<br></p>"+mailData.message+"<br><br>-Felix", 
+    attachments : mailData.attachement
+  });
+
+
+  
+}
+
 
 exports.notifyCustomer = async function(mailData) {
 
